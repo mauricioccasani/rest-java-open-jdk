@@ -1,5 +1,7 @@
 package com.mauricio.ccasani.rest.service.inf;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -9,4 +11,5 @@ import com.mauricio.ccasani.rest.service.exc.ExceptionService;
 public interface IClienteServiceInf extends GenericoService<Cliente, Integer> {
 	boolean existsByEmail(String email) throws ExceptionService;
 	Page<Cliente> findAll(Pageable pageable) throws ExceptionService;
+	Optional<Cliente> findByEmail(String email)throws ExceptionService;
 }

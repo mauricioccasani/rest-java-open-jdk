@@ -157,6 +157,12 @@ public class ClienteController implements Serializable {
 			response.put("errors", errors);
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		if (this.getClienteService().existsByEmail(cliente.getEmail())
+				&& this.getClienteService().findByEmail(cliente.getEmail()).get().getId()!=clienteActual.getId()) {
+			response.put("mensaje", "El : " + cliente.getEmail().concat(" ya existe"));
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+		}
+		
 		if (clienteActual.getId() == null) {
 			response.put("mensaje", "el campo id no existe");
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);

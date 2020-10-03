@@ -77,6 +77,15 @@ public class ClienteServiceImpl implements IClienteServiceInf {
 		return this.getClienteDao().existsByEmail(email);
 	}
 
+	@Override
+	public Optional<Cliente> findByEmail(String email) throws ExceptionService {
+		try {
+			return this.getClienteDao().findByEmail(email);
+		} catch (Exception e) {
+			throw new ExceptionService("Error al  buscar por email al cliente " + e.getMessage());
+		}
+	}
+
 	
 
 }
